@@ -1,0 +1,6 @@
+﻿CREATE TABLE [ts].[Companies]
+(
+	[Id]    UNIQUEIDENTIFIER  CONSTRAINT [DF_Company_Id] DEFAULT (NEWID()) NOT NULL,
+    [Name]  NVARCHAR (50)     NOT NULL,
+    CONSTRAINT [PKId_Companies] PRIMARY KEY CLUSTERED ([Id] ASC)
+)
