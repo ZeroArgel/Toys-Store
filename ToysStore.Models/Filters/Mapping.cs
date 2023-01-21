@@ -18,7 +18,6 @@ namespace ToysStore.Models.Filters
                 new MapperConfiguration(
                     cfg => {
                         #region Products mapping.
-
                         cfg.CreateMap<Products, Product>()
                             .ForMember(dest => dest.ProductId, opc => opc.MapFrom(src => src.Id))
                             .ForMember(dest => dest.ProductName, opc => opc.MapFrom(src => src.Name))
@@ -28,8 +27,12 @@ namespace ToysStore.Models.Filters
                             .ForMember(dest => dest.Id, opc => opc.MapFrom(src => src.ProductId))
                             .ForMember(dest => dest.Name, opc => opc.MapFrom(src => src.ProductName))
                             .ForMember(dest => dest.Description, opc => opc.MapFrom(src => src.ProductDescription))
-                            .ForPath(dest => dest.Company.Name, opc => opc.MapFrom(src => src.CompanyName))
                             .ForMember(dest => dest.Price, opc => opc.MapFrom(src => src.Price.ToString(new CultureInfo("en-Us")).ToDecimal()));
+
+                        cfg.CreateMap<Products, GetProducts.Response>()
+                            .ForMember(dest => dest.ProductId, opc => opc.MapFrom(src => src.Id))
+                            .ForMember(dest => dest.ProductName, opc => opc.MapFrom(src => src.Name))
+                            .ForMember(dest => dest.ProductDescription, opc => opc.MapFrom(src => src.Description));
 
                         cfg.CreateMap<AddProduct.Request, Products>()
                             .ForMember(dest => dest.Id, opc => opc.MapFrom(src => src.ProductId))
