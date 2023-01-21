@@ -13,7 +13,7 @@
     {
         public ServicesProducts(ToysStoreContext zFinancesContext) : base(zFinancesContext) { }
         public async Task<IQueryable<Products>> GetAsync(Expression<Func<Products, bool>> predicate = null)
-            => await GetTAsync(predicate);
+            => await GetTAsync(predicate, inc => inc.Company);
         public async Task<Products> GetByIdAsync(Guid id, CancellationToken cancellationToken) => await GetTByIdAsync(x => x.Id == id, cancellationToken);
         public async Task<Products> AddAsync(Products products, CancellationToken cancellationToken) => await AddTAsync(products, cancellationToken);
         public async Task<Products> UpdateAsync(Products products) => await UpdateTAsync(products);
